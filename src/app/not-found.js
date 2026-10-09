@@ -3,6 +3,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { Container, Eyebrow, Lead, PageTitle } from "@/components/page-parts";
 import { Reveal } from "@/components/motion";
 
+export const metadata = { title: "Page not found", robots: { index: false, follow: true } };
+
 export default function NotFound() {
   return (
     <Container className="py-[clamp(72px,10vw,140px)]">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { CONTACT_INFO, SERVE_HREF, SERVICES } from "@/lib/site-data";
+import { CONTACT_INFO, SERVE_HREF, SERVICES, SITE } from "@/lib/site-data";
 
 const heading = "text-xs tracking-[0.1em] text-foreground/70 uppercase";
 const link = "w-fit text-[15px] text-foreground no-underline transition-colors hover:text-brand-700";
@@ -18,9 +18,9 @@ export function SiteFooter() {
       <Separator />
       <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-x-6 gap-y-10 py-10">
         <div className="flex flex-col gap-2">
-          <span className="text-xl font-semibold tracking-[-0.02em]">TouchTax Accountants</span>
+          <span className="text-xl font-semibold tracking-[-0.02em]">{SITE.name}</span>
           <span className="text-[15px] text-muted-foreground">
-            Accounting, tax and advisory for individuals, businesses and property investors in London.
+            {SITE.summary}
           </span>
         </div>
         <nav aria-label="Services" className="flex flex-col gap-2">
@@ -54,7 +54,7 @@ export function SiteFooter() {
           )}
         </div>
       </div>
-      <p className="text-[13px] text-foreground/70">© 2026 TouchTax Accountants. All rights reserved.</p>
+      <p className="text-[13px] text-foreground/70">© {SITE.copyrightYear} {SITE.name}. All rights reserved.</p>
     </footer>
   );
 }

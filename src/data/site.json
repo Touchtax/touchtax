@@ -1,0 +1,59 @@
+{
+  "name": "TouchTax Accountants",
+  "shortName": "TouchTax",
+  "descriptor": "Accountants",
+  "logoMark": "Tt",
+  "url": "https://www.touchtax.co.uk",
+  "locale": "en_GB",
+  "language": "en-GB",
+  "tagline": "Accountants in London",
+  "description": "Bookkeeping, tax and business advice for individuals, companies and property investors across London.",
+  "summary": "Accounting, tax and advisory for individuals, businesses and property investors in London.",
+  "keywords": [
+    "accountants London",
+    "chartered accountants",
+    "tax return accountant",
+    "self assessment",
+    "bookkeeping",
+    "VAT returns",
+    "corporation tax",
+    "landlord accountant",
+    "small business accountant",
+    "payroll services"
+  ],
+  "category": "finance",
+  "contact": {
+    "phone": "020 7946 0000",
+    "phoneE164": "+442079460000",
+    "email": "hello@touchtax.co.uk",
+    "hours": {
+      "display": "Mon–Fri, 9:00–17:30",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:30"
+    }
+  },
+  "address": {
+    "streetAddress": "",
+    "locality": "London",
+    "region": "Greater London",
+    "postalCode": "",
+    "country": "GB"
+  },
+  "areaServed": "London",
+  "priceRange": "££",
+  "social": {
+    "twitterHandle": "",
+    "linkedin": "",
+    "facebook": "",
+    "instagram": "",
+    "x": ""
+  },
+  "theme": {
+    "brand": "#0b8a64",
+    "ink": "#09090b",
+    "accent": "#c4f04a"
+  },
+  "copyrightYear": 2026,
+  "lastUpdated": "2026-10-09"
+}

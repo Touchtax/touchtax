@@ -21,8 +21,17 @@ import {
   UserIcon,
 } from "@phosphor-icons/react/ssr";
 
-export const PHONE = { display: "020 7946 0000", href: "tel:+442079460000" };
-export const EMAIL = { display: "hello@touchtax.co.uk", href: "mailto:hello@touchtax.co.uk" };
+import site from "@/data/site.json";
+
+/** Brand and business details. Edit src/data/site.json to rebrand the whole site. */
+export const SITE = {
+  ...site,
+  // Deployments can override the canonical origin without editing the JSON.
+  url: (process.env.NEXT_PUBLIC_SITE_URL || site.url).replace(/\/$/, ""),
+};
+
+export const PHONE = { display: SITE.contact.phone, href: `tel:${SITE.contact.phoneE164}` };
+export const EMAIL = { display: SITE.contact.email, href: `mailto:${SITE.contact.email}` };
 
 export const SERVICES = [
   {
@@ -100,13 +109,13 @@ export const SERVE_HREF = "/#serve";
 export const CONTACT_INFO = [
   { label: "Call us", value: PHONE.display, icon: PhoneIcon, href: PHONE.href },
   { label: "Email", value: EMAIL.display, icon: EnvelopeSimpleIcon, href: EMAIL.href },
-  { label: "Office hours", value: "Mon–Fri, 9:00–17:30", icon: ClockIcon, href: null },
+  { label: "Office hours", value: SITE.contact.hours.display, icon: ClockIcon, href: null },
 ];
 
 export const ABOUT_LINKS = [
   { label: "Our practice", sub: "Who we are and who we work with.", icon: BuildingsIcon, href: "/about" },
   { label: "Our approach", sub: "How we keep your finances in order.", icon: CompassIcon, href: "/about#approach" },
-  { label: "What to expect", sub: "Working with your TouchTax accountant.", icon: HandshakeIcon, href: "/about#expect" },
+  { label: "What to expect", sub: `Working with your ${SITE.shortName} accountant.`, icon: HandshakeIcon, href: "/about#expect" },
 ];
 
 export const STEPS = [

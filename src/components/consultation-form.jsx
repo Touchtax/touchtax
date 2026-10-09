@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { EASE } from "@/components/motion";
-import { CLIENT_TYPES, SERVICE_OPTIONS } from "@/lib/site-data";
+import { CLIENT_TYPES, SERVICE_OPTIONS, SITE } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
 const COPY = {
@@ -29,7 +29,7 @@ const COPY = {
     rows: 3,
     submit: "Request a call back",
     SubmitIcon: ArrowRightIcon,
-    thanks: "An accountant from TouchTax will contact you shortly to arrange your consultation.",
+    thanks: `An accountant from ${SITE.shortName} will contact you shortly to arrange your consultation.`,
   },
   contact: {
     title: "Send us a message",
@@ -38,7 +38,7 @@ const COPY = {
     rows: 5,
     submit: "Send message",
     SubmitIcon: PaperPlaneTiltIcon,
-    thanks: "An accountant from TouchTax will contact you shortly.",
+    thanks: `An accountant from ${SITE.shortName} will contact you shortly.`,
   },
 };
 

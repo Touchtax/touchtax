@@ -5,17 +5,27 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Container, Eyebrow, Lead, PageTitle } from "@/components/page-parts";
 import { HoverLift, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { SERVICES } from "@/lib/site-data";
+import { JsonLd } from "@/components/json-ld";
+import { SERVICES, SITE } from "@/lib/site-data";
+import { pageMetadata, servicesSchema, webPageSchema } from "@/lib/seo";
 
-export const metadata = {
-  title: "Services — TouchTax Accountants",
-  description:
-    "Accounting & compliance, tax, business advisory and property services from TouchTax Accountants in London.",
-};
+const DESCRIPTION = `Accounting & compliance, tax, business advisory and property services from ${SITE.name} in ${SITE.areaServed}. One named accountant handles your affairs end to end.`;
+
+export const metadata = pageMetadata({ title: "Services", description: DESCRIPTION, path: "/services" });
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          type: "CollectionPage",
+          name: `Services | ${SITE.name}`,
+          description: DESCRIPTION,
+          path: "/services",
+          crumbs: [{ name: "Services", path: "/services" }],
+        })}
+      />
+      <JsonLd data={servicesSchema()} />
       <Container className="pt-[clamp(48px,7vw,96px)] pb-10">
         <Stagger onMount>
           <StaggerItem>

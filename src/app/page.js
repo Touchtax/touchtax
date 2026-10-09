@@ -16,15 +16,17 @@ import { ConsultationForm } from "@/components/consultation-form";
 import { CountUp, Float, ImagePlaceholder, Marquee } from "@/components/home-sections";
 import { Container, Eyebrow, Lead, SectionTitle } from "@/components/page-parts";
 import { HoverLift, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { AUDIENCES, FAQS, FEATURES, PHONE, SERVICES, SOFTWARE, STATS, STEPS } from "@/lib/site-data";
+import { JsonLd } from "@/components/json-ld";
+import { AUDIENCES, FAQS, FEATURES, PHONE, SERVICES, SITE, SOFTWARE, STATS, STEPS } from "@/lib/site-data";
+import { faqSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata = {
-  title: "TouchTax Accountants — London",
-};
+export const metadata = pageMetadata({ description: SITE.description, path: "/" });
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={webPageSchema({ name: `${SITE.name} — ${SITE.tagline}`, description: SITE.description, path: "/" })} />
+      <JsonLd data={faqSchema()} />
       <Hero />
       <SoftwareMarquee />
       <ServicesOverview />
@@ -51,7 +53,7 @@ function Hero() {
                   <span className="absolute inset-0 animate-ping rounded-full bg-zest opacity-60" />
                   <span className="relative size-[7px] rounded-full bg-zest shadow-[0_0_0_4px_rgb(196_240_74/0.2)]" />
                 </span>
-                Accountants in London
+                {SITE.tagline}
               </span>
             </StaggerItem>
             <StaggerItem>
@@ -63,8 +65,8 @@ function Hero() {
             </StaggerItem>
             <StaggerItem>
               <p className="mt-6 max-w-[50ch] text-[19px] leading-[1.6] text-zinc-400">
-                TouchTax Accountants looks after bookkeeping, tax and business advice for individuals, companies and
-                property investors across London.
+                {SITE.name} looks after bookkeeping, tax and business advice for individuals, companies and property
+                investors across {SITE.areaServed}.
               </p>
             </StaggerItem>
             <StaggerItem className="mt-6 flex flex-wrap gap-2">
@@ -172,7 +174,7 @@ function WorkingWithUs() {
   return (
     <Container className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] items-start gap-[clamp(40px,6vw,96px)] pt-[clamp(48px,6vw,80px)] pb-[clamp(72px,9vw,120px)]">
       <Reveal>
-        <Eyebrow>Working with TouchTax</Eyebrow>
+        <Eyebrow>Working with {SITE.shortName}</Eyebrow>
         <SectionTitle>Accounting that keeps pace with your plans</SectionTitle>
         <Lead className="mt-4">
           Whether you are filing your first Self Assessment, running a growing limited company or building a property
@@ -284,7 +286,7 @@ function Stats() {
         <Container className="py-[clamp(56px,7vw,96px)]">
           <div className="max-w-[640px]">
             <span className="inline-flex rounded-full border border-white/14 bg-white/8 px-3 py-1 text-[13px] font-medium text-zinc-200">
-              TouchTax at a glance
+              {SITE.shortName} at a glance
             </span>
             <h2 className="mt-3 text-[clamp(30px,3.4vw,42px)] leading-[1.1] text-white">
               A full-service practice with a{" "}

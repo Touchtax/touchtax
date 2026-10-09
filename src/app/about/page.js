@@ -4,30 +4,39 @@ import { CheckCircleIcon } from "@phosphor-icons/react/ssr";
 import { buttonVariants } from "@/components/ui/button";
 import { Container, Eyebrow, Lead, PageTitle } from "@/components/page-parts";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { APPROACH, EXPECT } from "@/lib/site-data";
+import { JsonLd } from "@/components/json-ld";
+import { APPROACH, EXPECT, SITE } from "@/lib/site-data";
+import { pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata = {
-  title: "About — TouchTax Accountants",
-  description:
-    "TouchTax Accountants is an independent London practice supporting self-employed people, growing companies, landlords and specialist professionals.",
-};
+const DESCRIPTION = `${SITE.name} is an independent ${SITE.areaServed} practice supporting self-employed people, growing companies, landlords and specialist professionals.`;
+
+export const metadata = pageMetadata({ title: "About", description: DESCRIPTION, path: "/about" });
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          type: "AboutPage",
+          name: `About | ${SITE.name}`,
+          description: DESCRIPTION,
+          path: "/about",
+          crumbs: [{ name: "About", path: "/about" }],
+        })}
+      />
       <Container className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] items-end gap-x-[clamp(40px,6vw,96px)] gap-y-10 pt-[clamp(48px,7vw,96px)] pb-[clamp(48px,6vw,80px)]">
         <Stagger onMount>
           <StaggerItem>
-            <Eyebrow>About TouchTax</Eyebrow>
+            <Eyebrow>About {SITE.shortName}</Eyebrow>
           </StaggerItem>
           <StaggerItem>
-            <PageTitle>A London practice built around the people it serves</PageTitle>
+            <PageTitle>A {SITE.areaServed} practice built around the people it serves</PageTitle>
           </StaggerItem>
         </Stagger>
         <Stagger onMount delay={0.2}>
           <StaggerItem>
             <Lead className="text-lg">
-              TouchTax Accountants supports self-employed people, growing companies, landlords and specialist
+              {SITE.name} supports self-employed people, growing companies, landlords and specialist
               professionals with their accounts, tax and financial planning.
             </Lead>
           </StaggerItem>

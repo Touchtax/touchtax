@@ -1,5 +1,7 @@
 "use server";
 
+import { SITE } from "@/lib/site-data";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
@@ -42,5 +44,5 @@ export async function submitEnquiry(_prevState, formData) {
 
 // Replace with your email provider or CRM (e.g. Resend, Postmark, HubSpot).
 async function deliverEnquiry(enquiry) {
-  console.info("[TouchTax] New enquiry", { ...enquiry, receivedAt: new Date().toISOString() });
+  console.info(`[${SITE.shortName}] New enquiry`, { ...enquiry, receivedAt: new Date().toISOString() });
 }

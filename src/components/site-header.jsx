@@ -33,7 +33,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/
 import { Logo, LogoMark } from "@/components/logo";
 import { EASE } from "@/components/motion";
 import { cn } from "@/lib/utils";
-import { ABOUT_LINKS, AUDIENCES, CONTACT_INFO, PHONE, SERVE_HREF, SERVICES } from "@/lib/site-data";
+import { ABOUT_LINKS, AUDIENCES, CONTACT_INFO, PHONE, SERVE_HREF, SERVICES, SITE } from "@/lib/site-data";
 
 const NAV = [
   { key: "services", label: "Services", href: "/services", page: "/services" },
@@ -216,7 +216,7 @@ function MegaPanel({ which }) {
       <div className="grid grid-cols-[minmax(0,4fr)_minmax(0,8fr)] gap-10">
         <div className="flex flex-col gap-2">
           <span className="text-2xl leading-[1.15] font-semibold tracking-[-0.03em]">
-            An independent accounting practice in London
+            An independent accounting practice in {SITE.areaServed}
           </span>
           <span className="text-[15px] text-muted-foreground">
             Who we are, how we work and what you can expect from us.
@@ -352,7 +352,7 @@ function mobileView(top) {
   if (top === "about")
     return {
       eyebrow: "Menu / About",
-      title: "About TouchTax",
+      title: `About ${SITE.shortName}`,
       rows: ABOUT_LINKS.map((l) => link(l.label, l.sub, l.icon, l.href)),
     };
   return {
@@ -412,7 +412,7 @@ function MobileMenu({ open, onOpenChange }) {
           ) : (
             <span className="flex items-center gap-2.5">
               <LogoMark />
-              <span className="text-[19px] font-semibold tracking-[-0.015em]">TouchTax</span>
+              <span className="text-[19px] font-semibold tracking-[-0.015em]">{SITE.shortName}</span>
             </span>
           )}
           <Button
