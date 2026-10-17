@@ -13,6 +13,7 @@ import {
   HandshakeIcon,
   HouseLineIcon,
   LightbulbIcon,
+  MapPinIcon,
   PhoneIcon,
   PiggyBankIcon,
   ReceiptIcon,
@@ -31,6 +32,7 @@ export const SITE = {
 };
 
 export const PHONE = { display: SITE.contact.phone, href: `tel:${SITE.contact.phoneE164}` };
+export const MOBILE_PHONE = { display: SITE.contact.mobile, href: `tel:${SITE.contact.mobileE164}` };
 export const EMAIL = { display: SITE.contact.email, href: `mailto:${SITE.contact.email}` };
 
 export const SERVICES = [
@@ -106,9 +108,23 @@ export const AUDIENCES = [
 
 export const SERVE_HREF = "/#serve";
 
+export const PRIMARY_NAVIGATION = [
+  { key: "services", label: "Services", href: "/services", page: "/services" },
+  { key: "serve", label: "Who we serve", href: SERVE_HREF, page: null },
+  { key: "about", label: "About", href: "/about", page: "/about" },
+  { key: "contact", label: "Contact", href: "/contact", page: "/contact" },
+];
+
 export const CONTACT_INFO = [
-  { label: "Call us", value: PHONE.display, icon: PhoneIcon, href: PHONE.href },
+  { label: "Office", value: PHONE.display, icon: PhoneIcon, href: PHONE.href },
+  { label: "Mobile", value: MOBILE_PHONE.display, icon: PhoneIcon, href: MOBILE_PHONE.href },
   { label: "Email", value: EMAIL.display, icon: EnvelopeSimpleIcon, href: EMAIL.href },
+  {
+    label: "Address",
+    value: [SITE.address.streetAddress, SITE.address.locality, SITE.address.postalCode].filter(Boolean).join(", "),
+    icon: MapPinIcon,
+    href: null,
+  },
   { label: "Office hours", value: SITE.contact.hours.display, icon: ClockIcon, href: null },
 ];
 

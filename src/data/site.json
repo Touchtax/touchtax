@@ -3,7 +3,7 @@
   "shortName": "TouchTax",
   "descriptor": "Accountants",
   "logoMark": "Tt",
-  "url": "https://www.touchtax.co.uk",
+  "url": "https://touchtax.co.uk",
   "locale": "en_GB",
   "language": "en-GB",
   "tagline": "Accountants in London",
@@ -23,9 +23,11 @@
   ],
   "category": "finance",
   "contact": {
-    "phone": "020 7946 0000",
-    "phoneE164": "+442079460000",
-    "email": "hello@touchtax.co.uk",
+    "phone": "0203 7840289",
+    "phoneE164": "+442037840289",
+    "mobile": "07951 552435",
+    "mobileE164": "+447951552435",
+    "email": "info@toucchtax.co.uk",
     "hours": {
       "display": "Mon–Fri, 9:00–17:30",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -34,10 +36,10 @@
     }
   },
   "address": {
-    "streetAddress": "",
-    "locality": "London",
+    "streetAddress": "2 Cambridge Rd",
+    "locality": "Kingston upon Thames",
     "region": "Greater London",
-    "postalCode": "",
+    "postalCode": "KT1 3JU",
     "country": "GB"
   },
   "areaServed": "London",

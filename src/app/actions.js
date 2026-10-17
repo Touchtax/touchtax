@@ -1,12 +1,14 @@
 "use server";
 
+import nodemailer from "nodemailer";
+
 import { SITE } from "@/lib/site-data";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * Handles consultation / contact enquiries.
- * Validates on the server, then hands the enquiry to `deliverEnquiry`.
+ * Validates on the server, then emails the enquiry to the configured inbox.
  */
 export async function submitEnquiry(_prevState, formData) {
   const enquiry = {
@@ -42,7 +44,45 @@ export async function submitEnquiry(_prevState, formData) {
   return { status: "success" };
 }
 
-// Replace with your email provider or CRM (e.g. Resend, Postmark, HubSpot).
 async function deliverEnquiry(enquiry) {
-  console.info(`[${SITE.shortName}] New enquiry`, { ...enquiry, receivedAt: new Date().toISOString() });
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, CONTACT_EMAIL_TO } = process.env;
+  const port = Number(SMTP_PORT);
+
+  if (!SMTP_HOST || !SMTP_PORT || !Number.isInteger(port) || port < 1 || port > 65535 || !SMTP_USER || !SMTP_PASS || !CONTACT_EMAIL_TO) {
+    throw new Error("Contact form SMTP is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, and CONTACT_EMAIL_TO.");
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: SMTP_HOST,
+    port,
+    secure: port === 465,
+    requireTLS: port !== 465,
+    auth: { user: SMTP_USER, pass: SMTP_PASS },
+  });
+
+  const fields = [
+    ["Name", enquiry.name],
+    ["Email", enquiry.email],
+    ["Phone", enquiry.phone || "Not provided"],
+    ["Client type", enquiry.clientType || "Not provided"],
+    ["Service", enquiry.service || "Not provided"],
+    ["Message", enquiry.message || "Not provided"],
+  ];
+  const escapeHtml = (value) =>
+    value.replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    })[character]);
+
+  await transporter.sendMail({
+    from: SMTP_USER,
+    to: CONTACT_EMAIL_TO,
+    replyTo: enquiry.email,
+    subject: `New enquiry from ${SITE.shortName} website`,
+    text: fields.map(([label, value]) => `${label}: ${value}`).join("\n"),
+    html: `<h1>New website enquiry</h1><dl>${fields.map(([label, value]) => `<dt><strong>${escapeHtml(label)}</strong></dt><dd>${escapeHtml(value).replace(/\n/g, "<br>")}</dd>`).join("")}</dl>`,
+  });
 }

@@ -1,4 +1,4 @@
-import { FAQS, SERVICES, SITE } from "@/lib/site-data";
+import { FAQS, PRIMARY_NAVIGATION, SERVICES, SITE } from "@/lib/site-data";
 
 export const absoluteUrl = (path = "/") => new URL(path, `${SITE.url}/`).toString();
 
@@ -110,6 +110,16 @@ export function organizationSchema() {
         url: absoluteUrl("/"),
         inLanguage: SITE.language,
         publisher: { "@id": ORG_ID },
+        hasPart: {
+          "@type": "SiteNavigationElement",
+          "@id": absoluteUrl("/#site-navigation"),
+          name: "Main navigation",
+          hasPart: PRIMARY_NAVIGATION.map((item) => ({
+            "@type": "WebPage",
+            name: item.label,
+            url: absoluteUrl(item.href),
+          })),
+        },
       },
     ],
   };

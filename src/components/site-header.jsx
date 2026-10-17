@@ -33,14 +33,16 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle } from "@/components/
 import { Logo, LogoMark } from "@/components/logo";
 import { EASE } from "@/components/motion";
 import { cn } from "@/lib/utils";
-import { ABOUT_LINKS, AUDIENCES, CONTACT_INFO, PHONE, SERVE_HREF, SERVICES, SITE } from "@/lib/site-data";
-
-const NAV = [
-  { key: "services", label: "Services", href: "/services", page: "/services" },
-  { key: "serve", label: "Who we serve", href: SERVE_HREF, page: null },
-  { key: "about", label: "About", href: "/about", page: "/about" },
-  { key: "contact", label: "Contact", href: "/contact", page: "/contact" },
-];
+import {
+  ABOUT_LINKS,
+  AUDIENCES,
+  CONTACT_INFO,
+  PHONE,
+  PRIMARY_NAVIGATION,
+  SERVE_HREF,
+  SERVICES,
+  SITE,
+} from "@/lib/site-data";
 
 const subtleLink =
   "py-[3px] text-[15px] text-foreground/80 no-underline transition-colors hover:text-brand-700 focus-visible:text-brand-700";
@@ -82,7 +84,7 @@ export function SiteHeader() {
           popupClassName="w-(--anchor-width) rounded-none border-t bg-background shadow-[0_24px_48px_-12px_rgb(9_9_11/0.22)] ring-0 data-ending-style:scale-100 data-starting-style:scale-100 data-starting-style:-translate-y-2"
         >
           <NavigationMenuList className="gap-1">
-            {NAV.map((item) => (
+            {PRIMARY_NAVIGATION.map((item) => (
               <NavigationMenuItem key={item.key} value={item.key}>
                 <NavigationMenuTrigger
                   onClick={(event) => {

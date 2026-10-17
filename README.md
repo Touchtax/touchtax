@@ -16,6 +16,19 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Contact form email
+
+Copy `.env.example` to `.env.local` and set the SMTP account credentials and
+`CONTACT_EMAIL_TO` recipient. The example uses Microsoft 365's
+`smtp.office365.com` on port `587`; for a personal Outlook.com mailbox, use
+`smtp-mail.outlook.com` instead. The authenticated SMTP account must permit
+SMTP AUTH (and may require an app password, depending on its security settings).
+The SMTP account is used as the sender, and replies to enquiries go to the
+visitor's email address.
+
+Set the same variables in the hosting provider's server-side environment before
+deploying. Never commit `.env.local` or real credentials.
+
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
